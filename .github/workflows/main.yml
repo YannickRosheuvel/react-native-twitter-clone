@@ -23,4 +23,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: kwetter:latest
+          tags: yannickrosheuvel/kwetter:latest
