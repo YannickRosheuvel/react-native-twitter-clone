@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Publish React Native App to Expo
 
 on:
   push:
@@ -6,21 +6,25 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-and-publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          node-version: '14.x'
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: yannickrosheuvel/kwetterfrontend:latest
+      - name: Install Expo CLI
+        run: npm install -g expo-cli
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build and publish app to Expo
+        run: |
+          expo login -u ${{ secrets.EXPO_USERNAME }} -p ${{ secrets.EXPO_PASSWORD }}
+          expo publish --release-channel ${{ github.sha }}
