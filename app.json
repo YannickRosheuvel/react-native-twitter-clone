@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Twitter App 2019",
-    "slug": "twitter-app-2019",
+    "slug": "kwetterfrontend",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -17,7 +17,7 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/9c372cb2-347d-484a-b187-4265c1bff628"
+      "url": "https://u.expo.dev/9725be17-ce0d-44ff-932f-edff7d427ef1"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -29,12 +29,13 @@
     "githubUrl": "https://github.com/dev-andremonteiro/react-native-twitter-clone",
     "extra": {
       "eas": {
-        "projectId": "9c372cb2-347d-484a-b187-4265c1bff628"
+        "projectId": "9725be17-ce0d-44ff-932f-edff7d427ef1"
       }
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "android": {}
+    "android": {},
+    "owner": "yannick0430"
   }
 }
