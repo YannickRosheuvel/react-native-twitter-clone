@@ -1,0 +1,39 @@
+name: EAS Publish
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  eas-publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install Expo CLI
+      run: npm install -g @expo/cli
+
+    - name: Login to Expo
+      run: npx expo login -u ${{ secrets.EXPO_CLI_USERNAME }} -p ${{ secrets.EXPO_CLI_PASSWORD }}
+
+    - name: Install EAS CLI
+      run: npm install -g eas-cli
+
+    - name: Configure EAS
+      run: eas configure
+
+    - name: Publish to EAS
+      run: eas publish
+      env:
+        EAS_BUILD_PROFILE: preview # change to the desired build profile
+        EAS_JSON_KEY_PATH: ${{ secrets.EAS_JSON_KEY_PATH }} # path to the EAS credentials JSON file
+
