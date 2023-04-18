@@ -22,7 +22,7 @@ jobs:
       run: npm install
 
     - name: Build the app
-      run: npm run build
+      run: npm expo start
 
     - name: Authenticate to EAS
       uses: expo/expo-github-action@v5
