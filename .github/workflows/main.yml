@@ -18,9 +18,8 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: Install Expo CLI and EAS CLI
-        run: |
-          npm install -g expo-cli @expo/eas-cli
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
 
       - name: Install dependencies
         run: npm install
@@ -28,4 +27,5 @@ jobs:
       - name: Build and publish app to Expo
         run: |
           eas login --username ${{ secrets.EXPO_USERNAME }} --password ${{ secrets.EXPO_PASSWORD }}
-          eas publish --release-channel ${{ github.sha }}
+          eas update --platform all --commit ${{ github.sha }}
+          eas build --platform all --profile preview
